@@ -7,6 +7,7 @@ using System.Data;
 using MODEL;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace DAL
 {
