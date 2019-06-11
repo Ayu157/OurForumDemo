@@ -12,6 +12,7 @@ namespace BLL
         DAL.dal dal = new dal();
         public List<AllInfo> GetInvitation()
         {
+            int t = 2;
             return dal.GetInvitation();
         }
     }
