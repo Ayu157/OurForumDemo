@@ -17,7 +17,7 @@ namespace MODEL
 
    public class Usertable
     {
-
+        //测试
         /// <summary>
         /// 用户表的具体字段
         /// </summary>
