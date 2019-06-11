@@ -7,12 +7,11 @@ using MODEL;
 using DAL;
 namespace BLL
 {
-    public class bll
+    public class Bll
     {
-        DAL.dal dal = new dal();
+        DAL.Dal dal = new Dal();
         public List<AllInfo> GetInvitation()
         {
-            int t = 2;
             return dal.GetInvitation();
         }
     }

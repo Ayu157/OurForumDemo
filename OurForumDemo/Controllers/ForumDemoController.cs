@@ -10,7 +10,7 @@ namespace OurForumDemo.Controllers
     
     public class ForumDemoController : Controller
     {
-        BLL.bll bll = new bll();
+        BLL.Bll bll = new Bll();
         // GET: ForumDemo
         public ActionResult Index()
         {

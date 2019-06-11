@@ -11,25 +11,14 @@ using System.Configuration;
 
 namespace DAL
 {
-    public class dal
+    public class Dal
     {
-        public static SqlConnection SqlConnection()//连接字符串
-        {
-            string sqlconnectionString = ConfigurationManager.ConnectionStrings["sqlconnectionString"].ConnectionString;
-            var connection = new SqlConnection(sqlconnectionString);
-            if (connection.State != ConnectionState.Open)
-            {
-                connection.Open();
-            }
-
-            return connection;
-        }
+        
         public List<AllInfo> GetInvitation()//获取帖子的信息
         {
-            using (IDbConnection conn = SqlConnection())
+            using (IDbConnection conn = Commond.SqlConnection())
             {
                 var data = conn.Query<AllInfo>("select * from Invitation ").ToList();
-                int e = 3;
                 return data;
             }
         }

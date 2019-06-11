@@ -2,8 +2,7 @@
 @{
     Layout = null;
 }
-@using MODEL
-@model List<AllInfo>
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -66,7 +65,7 @@
                             <a href="">
                                 <div class="indexCon_msg_detail_tittle">
                                     <span>竞拍</span>
-                                    <p>@item.Inv_Tittle</p>
+                                    <p>@item</p>
 
                                 </div>
                             </a>
@@ -75,7 +74,7 @@
                             </div>
                             <div class="indexCon_msg_detail_other">
                                 <ul>
-                                    <li>@item.Inv_UserGuId</li>
+                                    <li>@item</li>
                                     <li>发帖时间： @item.Inv_CreateTime</li>
                                     <li>0</li>
                                     <li>@item.Inv_Click</li>
