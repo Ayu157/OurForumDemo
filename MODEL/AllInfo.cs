@@ -8,7 +8,7 @@ namespace MODEL
 {
     public class AllInfo
     {
-        //宇大大1
+        //宇大大qwe
         //测试
         /// <summary>
         /// 用户表的具体字段
