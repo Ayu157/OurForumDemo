@@ -8,6 +8,7 @@ namespace MODEL
 {
     public class AllInfo
     {
+        //宇大大
         //测试
         /// <summary>
         /// 用户表的具体字段
