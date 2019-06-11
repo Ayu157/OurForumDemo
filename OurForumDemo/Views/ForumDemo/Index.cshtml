@@ -2,7 +2,8 @@
 @{
     Layout = null;
 }
-
+@using MODEL
+@model  List<AllInfo>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -57,15 +58,16 @@
             </div>
             @foreach (var item in Model)
             {
+                
                 <div class="indexMain_left_con">
                     <!--有主题图循环开始-->
                     <div class="indexCon_msg">
-                        <div class="indexCon_msg_pic"><img src="~/Img/1.jpg" />@*头像位*@</div>
+                        <div class="indexCon_msg_pic"><img src="@item.Inv_Img" alt="mmp" style="width:auto;height:auto;"/>@*头像位*@</div>
                         <div class="indexCon_msg_detail">
                             <a href="">
                                 <div class="indexCon_msg_detail_tittle">
                                     <span>竞拍</span>
-                                    <p>@item</p>
+                                    <p>@item.Inv_Tittle</p>
 
                                 </div>
                             </a>
@@ -74,7 +76,7 @@
                             </div>
                             <div class="indexCon_msg_detail_other">
                                 <ul>
-                                    <li>@item</li>
+                                    <li>@item.User_Name</li>
                                     <li>发帖时间： @item.Inv_CreateTime</li>
                                     <li>0</li>
                                     <li>@item.Inv_Click</li>

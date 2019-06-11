@@ -13,12 +13,11 @@ namespace DAL
 {
     public class Dal
     {
-        
         public List<AllInfo> GetInvitation()//获取帖子的信息
         {
             using (IDbConnection conn = Commond.SqlConnection())
             {
-                var data = conn.Query<AllInfo>("select * from Invitation ").ToList();
+                var data = conn.Query<AllInfo>("select *  from UserInfo a inner join Invitation b on a.User_GuId=b.Inv_UserGuId").ToList();
                 return data;
             }
         }
