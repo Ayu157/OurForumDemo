@@ -12,14 +12,23 @@ namespace OurForumDemo.Controllers
     {
         BLL.Bll bll = new Bll();
         // GET: ForumDemo
+        ///论坛首页
         public ActionResult Index()
         {
             var data = bll.GetInvitation();
             return View(data);
         }
+        ///发布论坛
         public ActionResult AddInvitation()
         {
             return View();
         }
+        ///帖子详情
+        public ActionResult DetailsInvitation()
+        {
+            return View();
+        }
+
+
     }
 }
