@@ -1,0 +1,81 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>发表帖子</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/Forum/css/reset.css" rel="stylesheet" />
+    <link href="~/Forum/css/public.css" rel="stylesheet" />
+    <link href="~/Forum/css/write.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="ltHead">
+        <div class="ltHead_cen">
+            <a href=""><img src="img/logo.png" alt="" class="headPic1" /></a>
+            <!--未登入开始-->
+            <!--<div class="ltForm">-->
+            <!--<a href=""><img src="img/indexForm_bg.png" alt="" class="headPic2"/></a>-->
+            <!--<ul>-->
+            <!--<li><a href="">登入</a></li>-->
+            <!--<li><a href="">注册</a></li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!-- 未登入结束-->
+            <!-- 登入开始，未登入时以下隐藏-->
+            <div class="lt_login">
+                <ul>
+                    <li><a href="">花开花落</a></li>
+                    <li><a href="">退出</a></li>
+                </ul>
+            </div>
+            <!-- 登入结束-->
+        </div>
+    </header>
+    <form id="froms" enctype="multipart/form-data" method="post">
+        <div class="writeCon">
+            <div class="writeCon_head">
+                <p>发新帖</p>
+            </div>
+            <div class="writeCon_cen">
+                <div class="writePic">
+                    <input type="file" accept=".jpeg, .jpg, .png" class="upload_file" id="img" name="img"/>
+                </div>
+                <div class="writeMsg">
+                    <input type="text" placeholder="请输入标题" id="myTittle" name="myTittle"/>
+                </div>
+                <div class="writeDown"><textarea id="TextArea1" rows="12" cols="80"></textarea></div>
+                <input type="button" class="reform" value="发布" onclick="upload()"/>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+<script>
+    function uload() {
+        var form=new FormData(document.querySelector)
+    }
+    $('[name="nice-select"]').click(function(e){
+        $('[name="nice-select"]').find('ul').hide();
+        $(this).find('ul').show();
+        e.stopPropagation();
+    });
+    $('[name="nice-select"] li').hover(function(e){
+        $(this).toggleClass('on');
+        e.stopPropagation();
+    });
+    $('[name="nice-select"] li').click(function(e){
+        var val = $(this).text();
+        var dataVal = $(this).attr("data-value");
+        $(this).parents('[name="nice-select"]').find('input').val(val);
+        $('[name="nice-select"] ul').hide();
+        e.stopPropagation();
+    });
+    $(document).click(function(){
+        $('[name="nice-select"] ul').hide();
+    });
+</script>

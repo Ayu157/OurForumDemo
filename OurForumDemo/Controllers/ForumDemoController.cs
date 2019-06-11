@@ -17,5 +17,9 @@ namespace OurForumDemo.Controllers
             var data = bll.GetInvitation();
             return View(data);
         }
+        public ActionResult AddInvitation()
+        {
+            return View();
+        }
     }
 }
