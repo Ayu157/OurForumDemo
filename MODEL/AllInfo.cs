@@ -8,6 +8,16 @@ namespace MODEL
 {
     public class AllInfo
     {
+
+        Usertable User { get; set; }
+
+
+        Post Pos { get; set; }
+    }
+
+   public class Usertable
+    {
+
         /// <summary>
         /// 用户表的具体字段
         /// </summary>
@@ -37,6 +47,12 @@ namespace MODEL
         public DateTime User_CreateTime { get; set; }
         //积分or发帖数
         public int User_Integral { get; set; }
+
+    }
+
+
+   public class Post
+    {
         /// <summary>
         /// 帖子的具体字段
         /// </summary>

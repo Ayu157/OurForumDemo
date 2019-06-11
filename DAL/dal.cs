@@ -29,6 +29,7 @@ namespace DAL
             using (IDbConnection conn = SqlConnection())
             {
                 var data = conn.Query<AllInfo>("select * from Invitation ").ToList();
+                int e = 3;
                 return data;
             }
         }
