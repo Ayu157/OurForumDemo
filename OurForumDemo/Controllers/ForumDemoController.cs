@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MODEL;
 using BLL;
+using Log;
 namespace OurForum.Controllers
 {
     
