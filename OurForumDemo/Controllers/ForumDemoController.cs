@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MODEL;
 using BLL;
-namespace OurForumDemo.Controllers
+namespace OurForum.Controllers
 {
     
     public class ForumDemoController : Controller

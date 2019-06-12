@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using OurForumDemo.Models;
+using OurForum.Models;
 
-namespace OurForumDemo.Controllers
+namespace OurForum.Controllers
 {
     [Authorize]
     public class ManageController : Controller

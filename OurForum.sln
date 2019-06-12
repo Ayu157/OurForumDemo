@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OurForumDemo", "OurForumDemo\OurForumDemo.csproj", "{13276070-03D4-4120-91E0-BBE4E10AFD96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OurForum", "OurForumDemo\OurForum.csproj", "{13276070-03D4-4120-91E0-BBE4E10AFD96}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{6526B5AB-F89C-4E78-B4EA-8C700C003422}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{1E5F399C-AE51-468C-89F5-AA3D0403D1B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEL", "MODEL\MODEL.csproj", "{D1DF7B23-06A0-4175-B1AD-D87951165739}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log", "Log\Log.csproj", "{9E7E3FEB-BFB2-438A-B37E-0D69D1C752DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D1DF7B23-06A0-4175-B1AD-D87951165739}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1DF7B23-06A0-4175-B1AD-D87951165739}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1DF7B23-06A0-4175-B1AD-D87951165739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E7E3FEB-BFB2-438A-B37E-0D69D1C752DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E7E3FEB-BFB2-438A-B37E-0D69D1C752DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E7E3FEB-BFB2-438A-B37E-0D69D1C752DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E7E3FEB-BFB2-438A-B37E-0D69D1C752DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

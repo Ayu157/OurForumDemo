@@ -11,6 +11,7 @@ using System.Configuration;
 
 namespace DAL
 {
+
     public class Dal
     {
         public List<AllInfo> GetInvitation()//获取帖子的信息
