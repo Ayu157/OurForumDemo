@@ -215,6 +215,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\OurForumDemo.dll" />
+    <Content Include="bin\OurForumDemo.pdb" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -277,30 +279,6 @@
     <Content Include="Forum\js\tiezi.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Login\css\inputEffect.css" />
-    <Content Include="Login\css\login.css" />
-    <Content Include="Login\css\normalize.css" />
-    <Content Include="Login\css\sign-up-login.css" />
-    <Content Include="Login\css\spop.min.css" />
-    <Content Include="Login\css\tooltips.css" />
-    <Content Include="Login\images\5476ba25Ne75aa640.png" />
-    <Content Include="Login\images\loginpassword.png" />
-    <Content Include="Login\images\loginuser.png" />
-    <Content Include="Login\images\owl-login%402x.png" />
-    <Content Include="Login\images\owl-login-arm%402x.png" />
-    <Content Include="Login\images\owl-login-arm.png" />
-    <Content Include="Login\images\owl-login.png" />
-    <Content Include="Login\images\ph-owl-arm%402x.png" />
-    <Content Include="Login\images\ph-owl-arm.png" />
-    <Content Include="Login\images\ph-owl-arml%402x.png" />
-    <Content Include="Login\images\ph-owl-arml.png" />
-    <Content Include="Login\images\signup-arm%402x.png" />
-    <Content Include="Login\images\signup-arm.png" />
-    <Content Include="Login\images\snow.jpg" />
-    <Content Include="Login\js\jquery.min.js" />
-    <Content Include="Login\js\jquery.pure.tooltips.js" />
-    <Content Include="Login\js\snow.js" />
-    <Content Include="Login\js\spop.min.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -357,11 +335,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ForumDemo\AddInvitation.cshtml" />
+    <Content Include="Views\ForumDemo\DetailsInvitation.cshtml" />
     <Content Include="Views\ForumDemo\Index.cshtml" />
     <Content Include="Views\ForumDemo\gao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Forum\" />
     <Folder Include="Img\" />
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +357,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{1e5f399c-ae51-468c-89f5-aa3d0403d1b6}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Log\Log.csproj">
+      <Project>{9e7e3feb-bfb2-438a-b37e-0d69d1c752db}</Project>
+      <Name>Log</Name>
     </ProjectReference>
     <ProjectReference Include="..\MODEL\MODEL.csproj">
       <Project>{d1df7b23-06a0-4175-b1ad-d87951165739}</Project>

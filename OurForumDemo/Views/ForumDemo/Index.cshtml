@@ -16,11 +16,11 @@
 <body>
     <header class="ltHead">
         <div class="ltHead_cen">
-            <a href=""><img src="img/logo.png" alt="" class="headPic1" /></a>
+            <a href=""><img src="~/img/logo.png" alt="" class="headPic1" /></a>
             <ul class="headNav">
                 <li><a href="~/Forum/Index">首页</a></li>
             </ul>
-            <!--未登入开始-->
+            <!--未登始-->
             <div class="ltForm appear">
                 <a href=""><img src="img/indexForm_bg.png" alt="" class="headPic2" /></a>
                 <ul>
@@ -39,7 +39,7 @@
             <!-- 登入结束-->
             <div class="navFix">
                 <!--登入开始-->
-                <a href="" class="navMe">花花</a>
+                <a href="" class="navMe">花</a>
                 <!--登入结束-->
                 <!--未登入开始-->
                 <!--<a href="" class="navLogin">登录</a>-->
@@ -58,15 +58,15 @@
             </div>
             @foreach (var item in Model)
             {
-                
+
                 <div class="indexMain_left_con">
                     <!--有主题图循环开始-->
                     <div class="indexCon_msg">
-                        <div class="indexCon_msg_pic"><img src="@item.Inv_Img" alt="mmp" style="width:auto;height:auto;"/>@*头像位*@</div>
+                        <div class="indexCon_msg_pic"><img src="@item.Inv_Img" alt="mmp" style="width:auto;height:auto;" />@*头像位*@</div>
                         <div class="indexCon_msg_detail">
-                            <a href="">
+                            <a href="/ForumDemo/DetailsInvitation?@item.Inv_GuId">
                                 <div class="indexCon_msg_detail_tittle">
-                                    <span>竞拍</span>
+                                    <span>热门</span>
                                     <p>@item.Inv_Tittle</p>
 
                                 </div>
