@@ -9,16 +9,14 @@ using Log;
 namespace BLL
 {
     public class Bll
-    {
+    {/// <summary>
+    /// Bll
+    /// </summary>
         DAL.Dal dal = new Dal();
         
         public List<AllInfo> GetInvitation()
         {
             return dal.GetInvitation();
-        }
-        public string GetXZInvitation(string IguId)
-        {
-            return dal.GetXZInvitation(IguId);
         }
     }
 }

@@ -63,6 +63,8 @@ namespace MODEL
         /// </summary>
         //评论表自增Id
         public int Com_Id { get; set; }
+        //帖子唯一Id
+        public string Com_InvGuId { get; set; }
         //评论表唯一Id
         public string Com_GuId { get; set; }
         //回复人Id

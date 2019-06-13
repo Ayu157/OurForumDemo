@@ -2,6 +2,8 @@
 @{
     Layout = null;
 }
+@using MODEL
+@model  List<AllInfo>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -19,23 +21,23 @@
                 url: "/ForumDemo/GetGuInvitation",
                 data:{"guId":aguId},
                 type: "post",
-                success: d=>{
-                    var s = JSON.parse(d)
-                    for (var i = 0; i < s.length; i++) {
+                success: e=>{
+                    var f = JSON.parse(e)
+                    for (var i = 0; i < f.length; i++) {
                         $("#myInv").append('<div class="tzCon_head">'+
                    '<div class="tzCon_head_left"></div>'+
                         '<div class="tzCon_head_right">'+
-                        '<h1>' + s[i].Inv_Tittle + '</h1>' +
+                        '<h1>' + f[i].Inv_Tittle + '</h1>' +
                        ' <ul>'+
-                            '<li>' + s[i].User_Name + '</li>' +
-                            '<li>' + s[i].Inv_CreateTime + '</li>' +
+                            '<li>' + f[i].User_Name + '</li>' +
+                            '<li>' + f[i].Inv_CreateTime + '</li>' +
                             '<li>21</li>'+
                         '</ul>'+
                    ' </div>'+
                    ' <div class="clear"></div>'+
                 '</div>'+
                 '<div class="tzCon_con">'+
-                    s[i].Inv_Body +
+                   f[i].Inv_Body +
                 '</div>'+
                 '<div class="tzCon_foot">'+
                     '<div class="tzCollect">'+
@@ -44,8 +46,44 @@
                     '</div>'+
                 '</div>')
                     }
+                   
             }
             })
+            $.ajax({
+                url: "/ForumDemo/GetComment",
+                data: { "guId": aguId },
+                type: "post",
+                success: s=> {
+                    alert(s);
+                    s = JSON.parse(s);
+                    alert(s);
+                    for (var i = 0; i < s.length; i++) {
+                        $("#newPending").append('<div class="newPending_son"> ' +
+                        '<div class="pendPic"></div>' +
+                        '<div class="pendDetail">' +
+                            '<div class="pendDetail_head">' +
+                                '<p>' + s[i].User_Name + '<span>' + s[i].Com_CreateTime + '</span></p>' +
+                                '<i>n楼</i>' +
+                            '</div>' +
+                            '<div class="pendDetail_con">' +
+                                '<p>' + s[i].Com_Body + '</p>' +
+                            '</div>' +
+                            '<div class="pendDetail_replayCon">' +
+                                '<p>回复桃花朵朵开：确实，正确的。</p>' +
+                            '</div>' +
+                            '<div class="pendDetail_btn">' +
+                                '<ul>' +
+                                    '<li>361</li>' +
+                                    '<li class="delateBtn">删除</li>' +
+                                '</ul>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="clear"></div>' +
+                   '</div>')
+                    }
+                }
+            })
+            
         })
 
     </script>
@@ -81,163 +119,17 @@
             <div class="tzCon" id="myInv">
                 
             </div>
-            <div class="newPending">
+            <div class="newPending" id="newPending">
                 <div class="newPending_head">
                     <div class="tzHeng"></div>
-                    <div class="newPending_head_tittle">最新评论(52)</div>
+                    <div class="newPending_head_tittle">最新评论(@ViewBag.leng)</div>
                 </div>
                 <!--楼主可以删除评论、自己可以删除自己的评论删除按钮酌情出现-->
-                <div class="newPending_son">
-                    <div class="pendPic"></div>
-                    <div class="pendDetail">
-                        <div class="pendDetail_head">
-                            <p>花开花落 <span>1天前</span></p>
-                            <i>2楼</i>
-                        </div>
-                        <div class="pendDetail_con">
-                            <p>测试一下图片,4文档和3文档差别很大测试一下图片,4文档和3文档差别很大</p>
-                        </div>
-                        <div class="pendDetail_btn">
-                            <ul>
-                                <li>361</li>
-                                <li class="replayBtn">278</li>
-                                <li class="delateBtn">删除</li>
-                            </ul>
-                        </div>
-                        <div class="pendDetail_action">
-                            <input type="text" value="回复XXX:" />
-                            <button>评论</button>
-                            <button>取消</button>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
+             
                 <!--回复后的情况-->
-                <div class="newPending_son">
-                    <div class="pendPic"></div>
-                    <div class="pendDetail">
-                        <div class="pendDetail_head">
-                            <p>花开花落 <span>1天前</span></p>
-                            <i>2楼</i>
-                        </div>
-                        <div class="pendDetail_con">
-                            <p>测试一下图片,4文档和3文档差别很大测试一下图片,4文档和3文档差别很大</p>
-                        </div>
-                        <div class="pendDetail_replayCon">
-                            <p>回复桃花朵朵开：确实，正确的。</p>
-                        </div>
-                        <div class="pendDetail_btn">
-                            <ul>
-                                <li>361</li>
-                                <li class="delateBtn">删除</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <!--测试内容-->
-                <div class="newPending_son">
-                    <div class="pendPic"></div>
-                    <div class="pendDetail">
-                        <div class="pendDetail_head">
-                            <p>花开花落 <span>1天前</span></p>
-                            <i>2楼</i>
-                        </div>
-                        <div class="pendDetail_con">
-                            <p>测试一下图片,4文档和3文档差别很大测试一下图片,4文档和3文档差别很大</p>
-                        </div>
-                        <div class="pendDetail_btn">
-                            <ul>
-                                <li>361</li>
-                                <li class="replayBtn">278</li>
-                                <li class="delateBtn">删除</li>
-                            </ul>
-                        </div>
-                        <div class="pendDetail_action">
-                            <input type="text" value="回复XXX:" />
-                            <button>评论</button>
-                            <button>取消</button>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="newPending_son">
-                    <div class="pendPic"></div>
-                    <div class="pendDetail">
-                        <div class="pendDetail_head">
-                            <p>花开花落 <span>1天前</span></p>
-                            <i>2楼</i>
-                        </div>
-                        <div class="pendDetail_con">
-                            <p>测试一下图片,4文档和3文档差别很大测试一下图片,4文档和3文档差别很大</p>
-                        </div>
-                        <div class="pendDetail_btn">
-                            <ul>
-                                <li>361</li>
-                                <li class="replayBtn">278</li>
-                                <li class="delateBtn">删除</li>
-                            </ul>
-                        </div>
-                        <div class="pendDetail_action">
-                            <input type="text" value="回复XXX:" />
-                            <button>评论</button>
-                            <button>取消</button>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="newPending_son">
-                    <div class="pendPic"></div>
-                    <div class="pendDetail">
-                        <div class="pendDetail_head">
-                            <p>花开花落 <span>1天前</span></p>
-                            <i>2楼</i>
-                        </div>
-                        <div class="pendDetail_con">
-                            <p>测试一下图片,4文档和3文档差别很大测试一下图片,4文档和3文档差别很大</p>
-                        </div>
-                        <div class="pendDetail_btn">
-                            <ul>
-                                <li>361</li>
-                                <li class="replayBtn">278</li>
-                                <li class="delateBtn">删除</li>
-                            </ul>
-                        </div>
-                        <div class="pendDetail_action">
-                            <input type="text" value="回复XXX:" />
-                            <button>评论</button>
-                            <button>取消</button>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="newPending_son">
-                    <div class="pendPic"></div>
-                    <div class="pendDetail">
-                        <div class="pendDetail_head">
-                            <p>花开花落 <span>1天前</span></p>
-                            <i>2楼</i>
-                        </div>
-                        <div class="pendDetail_con">
-                            <p>测试一下图片,4文档和3文档差别很大测试一下图片,4文档和3文档差别很大</p>
-                        </div>
-                        <div class="pendDetail_btn">
-                            <ul>
-                                <li>361</li>
-                                <li class="replayBtn">278</li>
-                                <li class="delateBtn">删除</li>
-                            </ul>
-                        </div>
-                        <div class="pendDetail_action">
-                            <input type="text" value="回复XXX:" />
-                            <button>评论</button>
-                            <button>取消</button>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <!--测试内容结束、十条内容分页-->
-            </div>
+
+
+   </div>
             <div class="indexFooter">
                 <div class="indexFooter_con">
                     <a href="javascript:"><</a>

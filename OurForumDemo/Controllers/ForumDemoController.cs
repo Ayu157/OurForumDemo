@@ -19,26 +19,5 @@ namespace OurForum.Controllers
             var data = bll.GetInvitation();
             return View(data);
         }
-       /// <summary>
-       /// 发布帖子
-       /// </summary>
-       /// <returns></returns>
-        public ActionResult AddInvitation()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 查询详情
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult DetailsInvitation()
-        {
-            return View();
-        }
-        public string GetGuInvitation(string guId)
-        {
-            return bll.GetXZInvitation(guId);
-        }
-
     }
 }
