@@ -58,12 +58,6 @@ namespace MODEL
         public int Inv_Click { get; set; }
         //帖子图片
         public string Inv_Img { get; set; }
-        /// <summary>
-        /// 这是评论表所需要的字段
-        /// </summary>
-        //评论表自增Id
-        public int Com_Id { get; set; }
-        //评论表唯一Id
-        public string Com_GuId { get; set; }
+
     }
 }
