@@ -39,6 +39,12 @@ namespace OurForum.Controllers
         {
             return bll.GetXZInvitation(guId);
         }
+        public string GetComment(string guId)
+        {
+            var data = bll.GetComment(guId);
+            ViewBag.leng = data.Length;
+            return data;
+        }
 
     }
 }

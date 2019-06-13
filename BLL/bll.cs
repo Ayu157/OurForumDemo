@@ -20,5 +20,9 @@ namespace BLL
         {
             return dal.GetXZInvitation(IguId);
         }
+        public string GetComment(string guId)
+        {
+            return dal.GetComment(guId);
+        }
     }
 }
