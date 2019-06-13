@@ -16,5 +16,9 @@ namespace BLL
         {
             return dal.GetInvitation();
         }
+        public string GetXZInvitation(string IguId)
+        {
+            return dal.GetXZInvitation(IguId);
+        }
     }
 }
