@@ -13,10 +13,16 @@
     <link rel="stylesheet" href="~/Forum/css/reset.css" />
     <link rel="stylesheet" href="~/Forum/css/public.css" />
     <link rel="stylesheet" href="~/Forum/css/index.css" />
-   <script>
-        $(function () {
+    <script>
+       $(function () {
             var stu = window.location.search;
-            var aguId = stu.substr(1, stu.length);
+           var aguId = "";
+           if ($("#Com_InvGuId").val().length>=5) {
+                aguId=$("#Com_InvGuId").val();
+            }
+            else {
+                aguId = stu.substr(1, stu.length);
+            }
             $.ajax({
                 url: "/ForumDemo/GetGuInvitation",
                 data:{"guId":aguId},
@@ -46,17 +52,15 @@
                     '</div>'+
                 '</div>')
                     }
-                   
+
             }
             })
             $.ajax({
                 url: "/ForumDemo/GetComment",
-                data: { "guId": aguId },
+                data: { "guId": aguId},
                 type: "post",
                 success: s=> {
-                    alert(s);
                     s = JSON.parse(s);
-                    alert(s);
                     for (var i = 0; i < s.length; i++) {
                         $("#newPending").append('<div class="newPending_son"> ' +
                         '<div class="pendPic"></div>' +
@@ -72,23 +76,28 @@
                                 '<p>回复桃花朵朵开：确实，正确的。</p>' +
                             '</div>' +
                             '<div class="pendDetail_btn">' +
-                                '<ul>' +
-                                    '<li>361</li>' +
+                            '<ul>' +
+                            '<li id="' + s[i].Com_InvGuId + '" onclick="AAA(' + s[i].User_Id + ',' + s[i].Com_Id + ',id)">' + s[i].Com_Click + '</li>' +
                                     '<li class="delateBtn">删除</li>' +
                                 '</ul>' +
                             '</div>' +
                         '</div>' +
                         '<div class="clear"></div>' +
-                   '</div>')
+                            '</div>')
                     }
                 }
             })
-            
-        })
+
+       })
+       //用户主键,评论主键,贴子外键
+       function AAA(User_Id, Com_Id, Com_InvGuId) {
+           location.href = '/ForumDemo/ClickPraise?User_Id=' + User_Id + '&Com_Id=' + Com_Id + '&Com_InvGuId=' + Com_InvGuId
+       }
 
     </script>
 </head>
 <body>
+    <input id="Com_InvGuId" type="hidden" value="@ViewBag.Com_InvGuId" />
     <header class="ltHead">
         <div class="ltHead_cen">
             <a href=""><img src="~/img/logo.png" alt="" class="headPic1" /></a>

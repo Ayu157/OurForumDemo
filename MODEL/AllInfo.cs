@@ -77,6 +77,20 @@ namespace MODEL
         public string Com_Img { get; set; }
         //评论时间
         public DateTime Com_CreateTime { get; set; }
-
+        //点赞
+        public int Com_Click { get; set; }
+        /// <summary>
+        /// 关系表
+        /// </summary>
+        //关系自增id
+        public int Rel_Id { get; set; }
+        //关系唯一id
+        public string Rel_GuId { get; set; }
+        //帖子外键
+        public string Rel_InvId { get; set; }
+        //评论外键
+        public int Rel_CommentId { get; set; }
+        //用户外键
+        public int Rel_UserId { get; set; }
     }
 }

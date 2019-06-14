@@ -43,14 +43,14 @@ namespace DAL
                 throw;
             }
         }
-        public string GetComment(string guId)
+        public string GetComment(string guId, int User_Id = 0)
         {
             try
             {
                 Log.FileLogService.Instance.Info("查询评论信息，Id=" + guId + "");
                 using (IDbConnection conn = Commond.SqlConnection())
                 {
-                    var da = conn.Query<AllInfo>("select *  from UserInfo a inner join Comment b on a.User_GuId=b.Com_UserGuId where b.Com_InvGuId ='" + guId + "'");
+                    var da = conn.Query<AllInfo>("select *  from UserInfo a inner join Comment b on a.User_GuId=b.Com_UserGuId  where b.Com_InvGuId ='" + guId+"'");
                     var data = JsonConvert.SerializeObject(da);
                     return data;
                 }
@@ -61,6 +61,68 @@ namespace DAL
                 throw;
             }
         }
+        /// <summary>
+        /// 点赞方法
+        /// </summary>
+        /// <param name="ClickPraise">根据用户id查询关系表</param>
+        /// <param name="AddComment">修改评论表+1</param>
+        /// <param name="DelComment">修改评论表-1</param>
+        /// <param name="DelRelationTable">删除关系表</param>
+        /// <param name="AddRelationTable">添加关系表</param>
+        /// <returns></returns>
+        //根据用户id查询关系表
+        public bool ClickPraise(int User_Id)
+        {
+            using (IDbConnection conn = Commond.SqlConnection())
+            {
+                var sql = conn.Query<AllInfo>("select * from RelationTable where Rel_UserId="+ User_Id).ToList();
+                if (sql.Count > 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+        //修改评论表+1
+        public int AddComment(int Com_Id)
+        {
+            using (IDbConnection conn = Commond.SqlConnection())
+            {
+                int n = conn.Execute("update Comment set Com_Click=Com_Click+1 where Com_Id=" + Com_Id);
+                return n;
+            }
+        }
+        //修改评论表-1
+        public int DelComment(int Com_Id)
+        {
+            using (IDbConnection conn = Commond.SqlConnection())
+            {
+                int n = conn.Execute("update Comment set Com_Click=Com_Click-1 where Com_Id=" + Com_Id);
+                return n;
+            }
+        }
+        //删除关系表
+        public int DelRelationTable(int User_Id)
+        {
+            using (IDbConnection conn = Commond.SqlConnection())
+            {
+                int n = conn.Execute("delete from RelationTable where Rel_UserId="+User_Id);
+                return n;
+            }
+        }
+        //添加关系表
+        public int AddRelationTable(int User_Id, int Com_Id, string Com_InvGuId)
+        {
+            using (IDbConnection conn = Commond.SqlConnection())
+            {
+                int n = conn.Execute($"insert into RelationTable values(newid(),'{Com_InvGuId}','{Com_Id}','{User_Id}')");
+                return n;
+            }
+        }
+
         //登录
         public int Login(string name, string pwd)
         {
@@ -93,6 +155,18 @@ namespace DAL
                 result = conn.Execute(sqlCommandText);
             }
             return result;
+        }
+        //忘记密码
+        public int Forget()
+        {
+            int result = 0;
+            using (IDbConnection conn = Commond.SqlConnection())
+            {
+                string sqlCommandText = "Update UserInfo set User_PassWord =@User_PassWord  where User_LoginName=@User_LoginName";
+                result = conn.Execute(sqlCommandText);
+            }
+            return result;
+            
         }
     }
 }
