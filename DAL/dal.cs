@@ -61,6 +61,38 @@ namespace DAL
                 throw;
             }
         }
-
+        //登录
+        public int Login(string name, string pwd)
+        {
+            using (IDbConnection conn = Commond.SqlConnection())
+            {
+                int statu = 0;//状态
+                var user = conn.Query<AllInfo>("select * from UserInfo");
+                foreach (var item in user)
+                {
+                    if (item.User_LoginName == name && item.User_PassWord == pwd)
+                    {
+                        statu = 1;
+                        break;
+                    }
+                    else
+                    {
+                        statu = 0;
+                    }
+                }
+                return statu;
+            }
+        }
+        //注册
+        public int Register(string name, string pwd, string code)
+        {
+            int result = 0;
+            using (IDbConnection conn = Commond.SqlConnection())
+            {
+                string sqlCommandText = string.Format("insert into UserInfo(User_LoginName,User_PassWord,User_Phone)values('{0}','{1}','{2}')", name, pwd, code);
+                result = conn.Execute(sqlCommandText);
+            }
+            return result;
+        }
     }
 }
