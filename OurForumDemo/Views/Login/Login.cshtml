@@ -121,7 +121,8 @@
                     type: "post",
                     success: s=> {
                         if (s > 0) {
-                            alert("登录成功 ");
+                            alert("登录成功")
+                            location.href = '/ForumDemo/Index';
                         }
                         else {
                             alert("您输出的用户错误或不存在 ");
@@ -371,6 +372,10 @@
                                     <i class="fa fa-fw fa-wifi icon icon--hideo"></i>
                                     <span class="input__label-content input__label-content--hideo"></span>
                                 </label>
+                            </span>
+                            <span class="input input--hideo">
+                                <input id="wen" class="input__field" type="text" name="wenn" autocomplete="off" placeholder="请输入验证码" />
+                                <i><input id="Button1" class="input__hideo" type="button" value="获取验证码" onclick="Duan()" /></i>
                             </span>
                             <span class="input input--hideo">
                                 <input class="input__field input__field--hideo" type="password" id="forget-password" placeholder="请重置密码" />

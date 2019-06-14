@@ -203,6 +203,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ForumDemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -278,6 +279,36 @@
     <Content Include="Forum\js\tiezi.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\1.jpg" />
+    <Content Include="Img\logo.png" />
+    <Content Include="Login\css\inputEffect.css" />
+    <Content Include="Login\css\login.css" />
+    <Content Include="Login\css\normalize.css" />
+    <Content Include="Login\css\sign-up-login.css" />
+    <Content Include="Login\css\spop.min.css" />
+    <Content Include="Login\css\tooltips.css" />
+    <Content Include="Login\images\5476ba25Ne75aa640.png" />
+    <Content Include="Login\images\loginpassword.png" />
+    <Content Include="Login\images\loginuser.png" />
+    <Content Include="Login\images\owl-login%402x.png" />
+    <Content Include="Login\images\owl-login-arm%402x.png" />
+    <Content Include="Login\images\owl-login-arm.png" />
+    <Content Include="Login\images\owl-login.png" />
+    <Content Include="Login\images\ph-owl-arm%402x.png" />
+    <Content Include="Login\images\ph-owl-arm.png" />
+    <Content Include="Login\images\ph-owl-arml%402x.png" />
+    <Content Include="Login\images\ph-owl-arml.png" />
+    <Content Include="Login\images\signup-arm%402x.png" />
+    <Content Include="Login\images\signup-arm.png" />
+    <Content Include="Login\images\snow.jpg" />
+    <Content Include="Login\js\jquery.min.js" />
+    <Content Include="Login\js\jquery.pure.tooltips.js" />
+    <Content Include="Login\js\snow.js" />
+    <Content Include="Login\js\spop.min.js" />
+    <Content Include="Log\2019-06-12.Error.txt" />
+    <Content Include="Log\2019-06-12.Info.txt" />
+    <Content Include="Log\2019-06-13.Error.txt" />
+    <Content Include="Log\2019-06-13.Info.txt" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -336,11 +367,10 @@
     <Content Include="Views\ForumDemo\AddInvitation.cshtml" />
     <Content Include="Views\ForumDemo\DetailsInvitation.cshtml" />
     <Content Include="Views\ForumDemo\Index.cshtml" />
-    <Content Include="Views\ForumDemo\gao.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

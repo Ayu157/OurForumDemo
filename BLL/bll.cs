@@ -24,5 +24,15 @@ namespace BLL
         {
             return dal.GetComment(guId);
         }
+        //登录
+        public int Login(string name, string pwd)
+        {
+            return dal.Login(name, pwd);
+        }
+        //注册
+        public int Register(string name, string pwd, string code)
+        {
+            return dal.Register(name, pwd, code);
+        }
     }
 }
