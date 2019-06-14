@@ -49,7 +49,41 @@
     <Compile Include="ILogService.cs" />
     <Compile Include="InternalLogger.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\ExamSystem.Log.dll" />
+    <Content Include="bin\Debug\ExamSystem.Log.pdb" />
+    <Content Include="bin\Debug\log4net.dll" />
+    <Content Include="obj\Debug\ExamSystem.Log.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\ExamSystem.Log.dll" />
+    <Content Include="obj\Debug\ExamSystem.Log.pdb" />
+    <Content Include="obj\Debug\HomeInn.Log.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Log.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Log4netDemo.Log.csproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\ExamSystem.Log.csproj.CopyComplete" />
+    <None Include="obj\Debug\ExamSystem.Log.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\ExamSystem.Log.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\HomeInn.Log.csproj.CopyComplete" />
+    <None Include="obj\Debug\HomeInn.Log.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\HomeInn.Log.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\Log.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\Log.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\Log.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Debug\Log4netDemo.Log.csproj.CopyComplete" />
+    <None Include="obj\Debug\Log4netDemo.Log.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\Log4netDemo.Log.csprojAssemblyReference.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

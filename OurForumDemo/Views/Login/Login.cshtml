@@ -121,7 +121,8 @@
                     type: "post",
                     success: s=> {
                         if (s > 0) {
-                            alert("登录成功 ");
+                            alert("登录成功")
+                            location.href = '/ForumDemo/Index';
                         }
                         else {
                             alert("您输出的用户错误或不存在 ");
