@@ -11,7 +11,10 @@ namespace BLL
     public class Bll
     {
         DAL.Dal dal = new Dal();
-
+        /// <summary>
+        /// 这是现实
+        /// </summary>
+        /// <returns></returns>
         public List<AllInfo> GetInvitation()
         {
             return dal.GetInvitation();
