@@ -2,91 +2,17 @@
 @{
     Layout = null;
 }
-@using MODEL
-@model  List<AllInfo>
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>帖子详情</title>
+    <script src="~/Forum/js/jquery-1.8.3.min.js"></script>
+    <script src="~/Forum/js/tiezi.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <link rel="stylesheet" href="~/Forum/css/reset.css" />
     <link rel="stylesheet" href="~/Forum/css/public.css" />
+    <link rel="stylesheet" href="~/Forum/css/reset.css" />
     <link rel="stylesheet" href="~/Forum/css/index.css" />
-   <script>
-        $(function () {
-            var stu = window.location.search;
-            var aguId = stu.substr(1, stu.length);
-            $.ajax({
-                url: "/ForumDemo/GetGuInvitation",
-                data:{"guId":aguId},
-                type: "post",
-                success: e=>{
-                    var f = JSON.parse(e)
-                    for (var i = 0; i < f.length; i++) {
-                        $("#myInv").append('<div class="tzCon_head">'+
-                   '<div class="tzCon_head_left"></div>'+
-                        '<div class="tzCon_head_right">'+
-                        '<h1>' + f[i].Inv_Tittle + '</h1>' +
-                       ' <ul>'+
-                            '<li>' + f[i].User_Name + '</li>' +
-                            '<li>' + f[i].Inv_CreateTime + '</li>' +
-                            '<li>21</li>'+
-                        '</ul>'+
-                   ' </div>'+
-                   ' <div class="clear"></div>'+
-                '</div>'+
-                '<div class="tzCon_con">'+
-                   f[i].Inv_Body +
-                '</div>'+
-                '<div class="tzCon_foot">'+
-                    '<div class="tzCollect">'+
-                        '<div class="tzCollect_left">收藏</div>'+
-                        '<div class="tzCollect_right">131</div>'+
-                    '</div>'+
-                '</div>')
-                    }
-                   
-            }
-            })
-            $.ajax({
-                url: "/ForumDemo/GetComment",
-                data: { "guId": aguId },
-                type: "post",
-                success: s=> {
-                    alert(s);
-                    s = JSON.parse(s);
-                    alert(s);
-                    for (var i = 0; i < s.length; i++) {
-                        $("#newPending").append('<div class="newPending_son"> ' +
-                        '<div class="pendPic"></div>' +
-                        '<div class="pendDetail">' +
-                            '<div class="pendDetail_head">' +
-                                '<p>' + s[i].User_Name + '<span>' + s[i].Com_CreateTime + '</span></p>' +
-                                '<i>n楼</i>' +
-                            '</div>' +
-                            '<div class="pendDetail_con">' +
-                                '<p>' + s[i].Com_Body + '</p>' +
-                            '</div>' +
-                            '<div class="pendDetail_replayCon">' +
-                                '<p>回复桃花朵朵开：确实，正确的。</p>' +
-                            '</div>' +
-                            '<div class="pendDetail_btn">' +
-                                '<ul>' +
-                                    '<li>361</li>' +
-                                    '<li class="delateBtn">删除</li>' +
-                                '</ul>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="clear"></div>' +
-                   '</div>')
-                    }
-                }
-            })
-            
-        })
-
-    </script>
 </head>
 <body>
     <header class="ltHead">
@@ -97,7 +23,7 @@
             </ul>
             <!--未登入开始-->
             <div class="ltForm">
-                <a href=""><img src="~/img/indexForm_bg.png" alt="" class="headPic2" /></a>
+                <a href=""></a>
                 <ul>
                     <li><a href="">登入</a></li>
                     <li><a href="">注册</a></li>
@@ -228,8 +154,81 @@
     </footer>
 </body>
 </html>
-<script src="~/Forum/js/jquery-1.8.3.min.js"></script>
-<script src="~/Forum/js/tiezi.js"></script>
 <script>
-
+    $(function () {
+        var stu = window.location.search;
+        var aguId = stu.substr(1, stu.length);
+        $.ajax({
+            url: "/ForumDemo/GetGuInvitation",
+            data: { "guId": aguId },
+            type: "post",
+            success: e=> {
+                var f = JSON.parse(e)
+                for (var i = 0; i < f.length; i++) {
+                    $("#myInv").append('<div class="tzCon_head">' +
+               '<div class="tzCon_head_left"></div>' +
+                    '<div class="tzCon_head_right">' +
+                    '<h1>' + f[i].Inv_Tittle + '</h1>' +
+                   ' <ul>' +
+                        '<li>' + f[i].User_Name + '</li>' +
+                        '<li>' + f[i].Inv_CreateTime + '</li>' +
+                        '<li>21</li>' +
+                    '</ul>' +
+               ' </div>' +
+               ' <div class="clear"></div>' +
+            '</div>' +
+            '<div class="tzCon_con">' +
+               f[i].Inv_Body +
+            '</div>' +
+            '<div class="tzCon_foot">' +
+                '<div class="tzCollect">' +
+                    '<div class="tzCollect_left">收藏</div>' +
+                    '<div class="tzCollect_right">131</div>' +
+                '</div>' +
+            '</div>')
+                }
+            }
+        })
+        $.ajax({
+            url: "/ForumDemo/GetComment",
+            data: { "guId": aguId },
+            type: "post",
+            success: s=> {
+                s = JSON.parse(s);
+                for (var i = 0; i < s.length; i++) {
+                    $("#newPending").append('<div class="newPending_son">' +
+            '<div class="pendPic"></div>' +
+            '<div class="pendDetail">' +
+                '<div class="pendDetail_head">' +
+                    '<p>' + s[i].User_Name + ' <span>' + s[i].Com_CreateTime + '</span></p>' +
+                    '<i>n楼</i>' +
+                '</div>' +
+                '<div class="pendDetail_con">' +
+                    '<p>' + s[i].Com_Body + '</p>' +
+                '</div>' +
+                '<div class="pendDetail_btn">' +
+                    '<ul>' +
+                        '<li>361</li>' +
+                        '<li id="' + s[i].Com_GuId + '" class="replayBtn">278</li>' +
+                        '<li class="delateBtn">删除</li>' +
+                    '</ul>' +
+                '</div>' +
+                '<div class="pendDetail_action">' +
+                    '<input type="text" value="回复[' + s[i].User_Name + ']:"/>' +
+                    '<button>评论</button>' +
+                    '<button>取消</button>' +
+                '</div>' +
+            '</div>' +
+            '<div class="clear"></div>' +
+        '</div>'
+                    )
+                    $("#" + s[i].Com_GuId).on("click", function () {
+                        alert("点击事件成功！")
+                        $(".pendDetail_action").hide();
+                        $(this).parent().parent().next(".pendDetail_action").show();
+                    })
+                }
+            }
+        })
+    })
 </script>
