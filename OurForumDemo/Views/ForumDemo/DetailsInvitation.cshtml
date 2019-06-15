@@ -10,91 +10,11 @@
     <meta charset="UTF-8">
     <title>帖子详情</title>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Forum/js/jquery-1.8.3.min.js"></script>
+    <script src="~/Forum/js/tiezi.js"></script>
     <link rel="stylesheet" href="~/Forum/css/reset.css" />
     <link rel="stylesheet" href="~/Forum/css/public.css" />
     <link rel="stylesheet" href="~/Forum/css/index.css" />
-    <script>
-       $(function () {
-            var stu = window.location.search;
-           var aguId = "";
-           if ($("#Com_InvGuId").val().length>=5) {
-                aguId=$("#Com_InvGuId").val();
-            }
-            else {
-                aguId = stu.substr(1, stu.length);
-            }
-            $.ajax({
-                url: "/ForumDemo/GetGuInvitation",
-                data:{"guId":aguId},
-                type: "post",
-                success: e=>{
-                    var f = JSON.parse(e)
-                    for (var i = 0; i < f.length; i++) {
-                        $("#myInv").append('<div class="tzCon_head">'+
-                   '<div class="tzCon_head_left"></div>'+
-                        '<div class="tzCon_head_right">'+
-                        '<h1>' + f[i].Inv_Tittle + '</h1>' +
-                       ' <ul>'+
-                            '<li>' + f[i].User_Name + '</li>' +
-                            '<li>' + f[i].Inv_CreateTime + '</li>' +
-                            '<li>21</li>'+
-                        '</ul>'+
-                   ' </div>'+
-                   ' <div class="clear"></div>'+
-                '</div>'+
-                '<div class="tzCon_con">'+
-                   f[i].Inv_Body +
-                '</div>'+
-                '<div class="tzCon_foot">'+
-                    '<div class="tzCollect">'+
-                        '<div class="tzCollect_left">收藏</div>'+
-                        '<div class="tzCollect_right">131</div>'+
-                    '</div>'+
-                '</div>')
-                    }
-
-            }
-            })
-            $.ajax({
-                url: "/ForumDemo/GetComment",
-                data: { "guId": aguId},
-                type: "post",
-                success: s=> {
-                    s = JSON.parse(s);
-                    for (var i = 0; i < s.length; i++) {
-                        $("#newPending").append('<div class="newPending_son"> ' +
-                        '<div class="pendPic"></div>' +
-                        '<div class="pendDetail">' +
-                            '<div class="pendDetail_head">' +
-                                '<p>' + s[i].User_Name + '<span>' + s[i].Com_CreateTime + '</span></p>' +
-                                '<i>n楼</i>' +
-                            '</div>' +
-                            '<div class="pendDetail_con">' +
-                                '<p>' + s[i].Com_Body + '</p>' +
-                            '</div>' +
-                            '<div class="pendDetail_replayCon">' +
-                                '<p>回复桃花朵朵开：确实，正确的。</p>' +
-                            '</div>' +
-                            '<div class="pendDetail_btn">' +
-                            '<ul>' +
-                            '<li id="' + s[i].Com_InvGuId + '" onclick="AAA(' + s[i].User_Id + ',' + s[i].Com_Id + ',id)">' + s[i].Com_Click + '</li>' +
-                                    '<li class="delateBtn">删除</li>' +
-                                '</ul>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="clear"></div>' +
-                            '</div>')
-                    }
-                }
-            })
-
-       })
-       //用户主键,评论主键,贴子外键
-       function AAA(User_Id, Com_Id, Com_InvGuId) {
-           location.href = '/ForumDemo/ClickPraise?User_Id=' + User_Id + '&Com_Id=' + Com_Id + '&Com_InvGuId=' + Com_InvGuId
-       }
-
-    </script>
 </head>
 <body>
     <input id="Com_InvGuId" type="hidden" value="@ViewBag.Com_InvGuId" />
@@ -126,7 +46,7 @@
     <div class="indexMain">
         <div class="indexMain_left">
             <div class="tzCon" id="myInv">
-                
+
             </div>
             <div class="newPending" id="newPending">
                 <div class="newPending_head">
@@ -134,11 +54,10 @@
                     <div class="newPending_head_tittle">最新评论(@ViewBag.leng)</div>
                 </div>
                 <!--楼主可以删除评论、自己可以删除自己的评论删除按钮酌情出现-->
-             
                 <!--回复后的情况-->
 
 
-   </div>
+            </div>
             <div class="indexFooter">
                 <div class="indexFooter_con">
                     <a href="javascript:"><</a>
@@ -227,18 +146,126 @@
             <div class="indexWxpublic">
                 <p>关注微信公众号</p>
             </div>
-            
+
         </div>
         <div class="clear"></div>
-        
+
     </div>
     <footer class="publicFooter">
         <p>Copyrigh &copy; 2017-2018 PaiWang 上海钦合投资管理有限公司版权所有 沪ICP备16032224号-2</p>
     </footer>
 </body>
 </html>
-<script src="~/Forum/js/jquery-1.8.3.min.js"></script>
-<script src="~/Forum/js/tiezi.js"></script>
+
 <script>
+    $(function () {
+        var stu = window.location.search;
+        var aguId = "";
+        if ($("#Com_InvGuId").val().length >= 5) {
+            aguId = $("#Com_InvGuId").val();
+        }
+        else {
+            aguId = stu.substr(1, stu.length);
+        }
+        $.ajax({
+            url: "/ForumDemo/GetGuInvitation",
+            data: { "guId": aguId },
+            type: "post",
+            success: e => {
+                var f = JSON.parse(e)
+                for (var i = 0; i < f.length; i++) {
+                    $("#myInv").append('<div class="tzCon_head">' +
+                        '<div class="tzCon_head_left"></div>' +
+                        '<div class="tzCon_head_right">' +
+                        '<h1>' + f[i].Inv_Tittle + '</h1>' +
+                        ' <ul>' +
+                        '<li>' + f[i].User_Name + '</li>' +
+                        '<li>' + f[i].Inv_CreateTime + '</li>' +
+                        '<li>21</li>' +
+                        '</ul>' +
+                        ' </div>' +
+                        ' <div class="clear"></div>' +
+                        '</div>' +
+                        '<div class="tzCon_con">' +
+                        f[i].Inv_Body +
+                        '</div>' +
+                        '<div class="tzCon_foot">' +
+                        '<div class="tzCollect">' +
+                        '<div class="tzCollect_left">收藏</div>' +
+                        '<div class="tzCollect_right">131</div>' +
+                        '</div>' +
+                        '</div>')
+                }
+
+            }
+        })
+        $.ajax({
+            url: "/ForumDemo/GetComment",
+            data: { "guId": aguId },
+            type: "post",
+            success: s => {
+                s = JSON.parse(s);
+                for (var i = 0; i < s.length; i++) {
+                    sa = s[i].Com_ComGuId;
+                    if (s[i].Com_ComGuId != null) {
+                        $.ajax({
+                            url: "/ForumDemo/GetCommentByUserGu",
+                            data: { "guId": sa },
+                            type: "post",
+                            success: a => {
+                                for (var j = 0; j < a.length; j++) {
+                                    $("#a" + s[i].Com_Id).append('<div class="pendDetail_replayCon"> ' +
+                                        '<p>[' + s[i].User_Name + ']回复[' + a[j].User_Name + ']:' + s[i].Com_Body + '</p> ' +
+                                        '</div> ')
+                                }
+                            }
+                        })
+                    }
+                    else {
+                        $("#newPending").append('<div class="newPending_son"> ' +
+                            '<div class="pendPic"></div>' +
+                            '<div class="pendDetail">' +
+                            '<div class="pendDetail_head">' +
+                            '<p>' + s[i].User_Name + '<span>' + s[i].Com_CreateTime + '</span></p>' +
+                            '<i>n楼</i>' +
+                            '</div>' +
+                            '<div class="pendDetail_con">' +
+                            '<p>' + s[i].Com_Body + '</p>' +
+                            '</div>' +
+                            '<div id="a' + s[i].Com_Id + '"></div>' +
+                            '<div class="pendDetail_btn">' +
+                            '<ul>' +
+                            '<li id="' + s[i].Com_InvGuId + '" onclick="AAA(' + s[i].User_Id + ',' + s[i].Com_Id + ',id)">' + s[i].Com_Click + '</li>' +
+                            '<li id="' + s[i].Com_GuId + '" class="replayBtn">278</li>' +
+                            '<li class="delateBtn">删除</li>' +
+                            '</ul>' +
+                            '</div>' +
+                            '<div class="pendDetail_action">' +
+                            '<input type="text" value="回复[' + s[i].User_Name + ']:"/>' +
+                            '<button>评论</button>' +
+                            '<button>取消</button>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="clear"></div>' +
+                            '</div>'
+                        )
+                    }
+                    $("#" + s[i].Com_GuId).on("click", function () {
+                        alert("点击事件成功！")
+                        $(".pendDetail_action").hide();
+                        $(this).parent().parent().next(".pendDetail_action").show();
+                    })
+                    $(".pendDetail_action button:last-of-type").click(function () {
+                        $(".pendDetail_action").hide();
+                    });
+                }
+            }
+        })
+
+    })
+    //用户主键,评论主键,贴子外键
+    function AAA(User_Id, Com_Id, Com_InvGuId) {
+        location.href = '/ForumDemo/ClickPraise?User_Id=' + User_Id + '&Com_Id=' + Com_Id + '&Com_InvGuId=' + Com_InvGuId
+    }
 
 </script>

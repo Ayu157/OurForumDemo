@@ -49,6 +49,11 @@ namespace OurForum.Controllers
             ViewBag.leng = data.Length;
             return data;
         }
+        //盖楼
+        public string GetCommentByUserGu(string aguId)
+        {
+            return bll.GetCommentByUserGu(aguId);
+        }
         /// <summary>
         /// 点赞方法
         /// </summary>
