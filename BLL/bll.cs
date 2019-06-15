@@ -27,6 +27,11 @@ namespace BLL
         {
             return dal.GetComment(guId);
         }
+        //盖楼
+        public string GetCommentByUserGu(string guId)
+        {
+            return dal.GetCommentByUserGu(guId);
+        }
         /// <summary>
         /// 点赞
         /// </summary>
