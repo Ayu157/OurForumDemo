@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODEL", "MODEL\MODEL.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log", "Log\Log.csproj", "{9E7E3FEB-BFB2-438A-B37E-0D69D1C752DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UptLogin", "UptLogin\UptLogin.csproj", "{A9586F6B-3DF6-456F-81F4-EDFBF140D3AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9E7E3FEB-BFB2-438A-B37E-0D69D1C752DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E7E3FEB-BFB2-438A-B37E-0D69D1C752DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E7E3FEB-BFB2-438A-B37E-0D69D1C752DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9586F6B-3DF6-456F-81F4-EDFBF140D3AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9586F6B-3DF6-456F-81F4-EDFBF140D3AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9586F6B-3DF6-456F-81F4-EDFBF140D3AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9586F6B-3DF6-456F-81F4-EDFBF140D3AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,129 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UptPwd</title>
+    <link href="~/UptLoginpwd/easyui.css" rel="stylesheet" />
+    <link href="~/UptLoginpwd/icon.css" rel="stylesheet" />
+    <script src="~/UptLoginpwd/js/jquery-1.7.2.min.js"></script>
+    <script src="~/UptLoginpwd/js/jquery.easyui.min.js"></script>
+    <script src="~/UptLoginpwd/js/easyui-lang-zh_CN.js"></script>
+    <script src="~/UptLoginpwd/js/jquery.validate.min.js"></script>
+    <script src="~/UptLoginpwd/js/jquery.cookie.js"></script>
+    <style type="text/css">
+        .div1 {
+            width: 350px;
+            height: 160px;
+        }
+
+        td {
+            text-align: right;
+        }
+
+        .input1 {
+            width: 180px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1">
+        <input type="hidden" name="userId" value="" />
+        <div class="div1">
+            <table>
+                <tr><td>用户名：</td><td><input class="input1" type="text" id="userName" name="userName" value="" /></td></tr>
+                <tr><td>旧密码：</td><td><input class="input1" type="password" id="pwd" name="pwd" value="" /></td></tr>
+                <tr><td>新密码：</td><td><input class="input1" type="password" id="NewPwd" name="NewPwd" value="" /></td></tr>
+                <tr><td>确认新密码：</td><td><input class="input1" type="password" id="confirmPwd" name="confirmPwd" value="" /></td></tr>
+                <tr>
+                    <td id="btnCaoZuo" style="padding-right:20px;width:160px;" colspan="2">
+                        <input type="button" style="width:80px;margin-right:15px;" onclick="test()" value="保存" />
+                        <input type="button" style="width:80px;" value="取消" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+
+        function check_form() {
+
+            return $("#form1").validate({
+                rules: {
+                    userName: {
+                        required: true,
+                        minlength: 2
+                    },
+                    NewPwd: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 20,
+                    },
+                    confirmPwd: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 20,
+                        equalTo: "#NewPwd"
+                    }
+
+                },
+                messages: {
+                    userName: {
+                        required: "请输入用户名",
+                        minlength: "用户名必需由两个字母组成"
+                    },
+                    NewPwd: {
+                        required: "请输入密码",
+                        minlength: "密码长度不能小于 6 个字母",
+                        maxlength: "密码长度不能多于 20 个字母",
+                    },
+                    confirmPwd: {
+                        required: "请输入密码",
+                        minlength: "密码长度不能小于 6 个字母",
+                        maxlength: "密码长度不能多于 20 个字母",
+                        equalTo: "两次密码输入不一致"
+                    }
+
+                }
+            });
+        }
+        function test()
+        {
+            if (check_form().form()) {
+                var f = $('#form1');
+                f.form('submit', {
+                    url: 'Default/UptPWD',
+                    type: 'post',
+                    success: function (data) {
+                        var json = $.parseJSON(data);
+                        if (json.id == 1) {
+
+                        }
+
+                    },
+                    error: function (data) {
+
+                    }
+
+                });
+                return true;
+
+            } else {
+
+                return false;
+
+            }
+
+
+
+        }
+</script>
+
