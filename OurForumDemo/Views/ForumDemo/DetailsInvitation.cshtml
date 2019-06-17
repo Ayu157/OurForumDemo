@@ -119,11 +119,6 @@
                 <div class="indexPublic_con">
                     <ul class="weekHot">
                         <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
-                        <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
-                        <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
-                        <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
-                        <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
-                        <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
                     </ul>
                 </div>
             </div>
@@ -186,9 +181,7 @@
                         ' </div>' +
                         ' <div class="clear"></div>' +
                         '</div>' +
-                        '<div class="tzCon_con">' +
-                        f[i].Inv_Body +
-                        '</div>' +
+                        '<div class="tzCon_con">' +f[i].Inv_Body +'</div>' +
                         '<div class="tzCon_foot">' +
                         '<div class="tzCollect">' +
                         '<div class="tzCollect_left">收藏</div>' +
@@ -205,9 +198,13 @@
             type: "post",
             success: s => {
                 s = JSON.parse(s);
+                $("#tittleHead").append("所有评论("+s.length+")")
                 for (var i = 0; i < s.length; i++) {
                     sa = s[i].Com_ComGuId;
                     if (s[i].Com_ComGuId != null) {
+                        $("#" + s[i].Com_ComGuId + "i").append('<div class="pendDetail_replayCon"> ' +
+                                     '<p>[' + s[i].User_Name + '回复的内容]:' + s[i].Com_Body + '</p> ' +
+                                    '</div> ')
                         $.ajax({
                             url: "/ForumDemo/GetCommentByUserGu",
                             data: { "guId": sa },
@@ -245,6 +242,7 @@
                             '<button>评论</button>' +
                             '<button>取消</button>' +
                             '</div>' +
+                            '<div id="' + s[i].Com_GuId + 'i"></div>' +
                             '</div>' +
                             '<div class="clear"></div>' +
                             '</div>'
