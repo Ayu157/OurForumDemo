@@ -24,7 +24,13 @@ namespace OurForumDemo.Controllers
         [HttpPost]
         public int Login(string name, string pwd)
         {
-            int i = bll.Login(name, pwd);
+            var list = bll.Login(name, pwd);
+            foreach (var item in list)
+            {
+                Session["User_LoginName"] = item.User_LoginName;
+                Session["User_GuId"] = item.User_GuId;
+            }
+            int i = list.Count();
             return i;
         }
         //注册
@@ -33,7 +39,17 @@ namespace OurForumDemo.Controllers
             int i = bll.Register(name,pwd,code);
             return i;
         }
-
+        //忘记密码
+        public JsonResult Forget(string pwd, string phone)
+        {
+            //AllInfo all = new AllInfo();
+            //all.User_Phone = phone;
+            //all.User_PassWord = pwd;
+            //var str =
+            //int i = bll.Forget(all);
+            //return i;
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
         //短信验证的方法
         private const String host = "http://dingxin.market.alicloudapi.com";
         private const String path = "/dx/sendSms";
@@ -44,8 +60,8 @@ namespace OurForumDemo.Controllers
         {
             Random rad = new Random();
             int value = rad.Next(1000, 10000);
-            ViewBag.value = value;
-            String querys = "mobile="+phone+"&param=code:"+value+"&tpl_id=TP1711063";
+            Session["value"] = value;
+            String querys = "mobile=" + phone + "&param=code:" + value + "&tpl_id=TP1711063";
             String bodys = "";
             String url = host + path;
             HttpWebRequest httpRequest = null;

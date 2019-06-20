@@ -108,84 +108,179 @@ namespace DAL
         //修改评论表+1
         public int AddComment(int Com_Id)
         {
-            using (IDbConnection conn = Commond.SqlConnection())
+            try
             {
-                int n = conn.Execute("update Comment set Com_Click=Com_Click+1 where Com_Id=" + Com_Id);
-                return n;
+                Log.FileLogService.Instance.Info("修改评论表+1，执行编号为" + Com_Id + "");
+                using (IDbConnection conn = Commond.SqlConnection())
+                {
+                    int n = conn.Execute("update Comment set Com_Click=Com_Click+1 where Com_Id=" + Com_Id);
+                    return n;
+                }
             }
+            catch (Exception)
+            {
+                Log.FileLogService.Instance.Error("修改评论表+1失败！执行编号为" + Com_Id + "");
+                throw;
+            }
+            
         }
         //修改评论表-1
         public int DelComment(int Com_Id)
         {
-            using (IDbConnection conn = Commond.SqlConnection())
+            try
             {
-                int n = conn.Execute("update Comment set Com_Click=Com_Click-1 where Com_Id=" + Com_Id);
-                return n;
+                Log.FileLogService.Instance.Info("修改评论表-1，执行编号为" + Com_Id + "");
+                using (IDbConnection conn = Commond.SqlConnection())
+                {
+                    int n = conn.Execute("update Comment set Com_Click=Com_Click-1 where Com_Id=" + Com_Id);
+                    return n;
+                }
             }
+            catch (Exception)
+            {
+                Log.FileLogService.Instance.Error("修改评论表-1失败！执行编号为" + Com_Id + "");
+                throw;
+            }
+            
         }
         //删除关系表
         public int DelRelationTable(int User_Id)
         {
-            using (IDbConnection conn = Commond.SqlConnection())
+
+            try
             {
-                int n = conn.Execute("delete from RelationTable where Rel_UserId="+User_Id);
-                return n;
+                Log.FileLogService.Instance.Info("删除关系表，执行编号为" + User_Id + "");
+                using (IDbConnection conn = Commond.SqlConnection())
+                {
+                    int n = conn.Execute("delete from RelationTable where Rel_UserId=" + User_Id);
+                    return n;
+                }
             }
+            catch (Exception)
+            {
+                Log.FileLogService.Instance.Error("删除关系表，执行编号为" + User_Id + "");
+                throw;
+            }
+
         }
         //添加关系表
         public int AddRelationTable(int User_Id, int Com_Id, string Com_InvGuId)
         {
-            using (IDbConnection conn = Commond.SqlConnection())
+            try
             {
-                int n = conn.Execute($"insert into RelationTable values(newid(),'{Com_InvGuId}','{Com_Id}','{User_Id}')");
-                return n;
+                Log.FileLogService.Instance.Info("添加关系表，执行编号为" + User_Id + "");
+                using (IDbConnection conn = Commond.SqlConnection())
+                {
+                    int n = conn.Execute($"insert into RelationTable values(newid(),'{Com_InvGuId}','{Com_Id}','{User_Id}')");
+                    return n;
+                }
             }
+            catch (Exception)
+            {
+                Log.FileLogService.Instance.Error("添加关系表，执行编号为" + User_Id + "");
+                throw;
+            }
+            
         }
 
         //登录
-        public int Login(string name, string pwd)
+        public List<AllInfo> Login(string name, string pwd)
         {
-            using (IDbConnection conn = Commond.SqlConnection())
+            try
             {
-                int statu = 0;//状态
-                var user = conn.Query<AllInfo>("select * from UserInfo");
-                foreach (var item in user)
+                Log.FileLogService.Instance.Info("登录事件："+name+","+pwd+"成功");
+                using (IDbConnection conn = Commond.SqlConnection())
                 {
-                    if (item.User_LoginName == name && item.User_PassWord == pwd)
-                    {
-                        statu = 1;
-                        break;
-                    }
-                    else
-                    {
-                        statu = 0;
-                    }
+                    var user = conn.Query<AllInfo>("select * from UserInfo where User_LoginName='" + name + "' and User_PassWord='" + pwd + "' ").ToList();
+                    return user;
                 }
-                return statu;
             }
+            catch (Exception)
+            {
+                Log.FileLogService.Instance.Error("登录事件：" + name + "," + pwd + "失败");
+                throw;
+            }
+      
         }
         //注册
         public int Register(string name, string pwd, string code)
         {
             int result = 0;
-            using (IDbConnection conn = Commond.SqlConnection())
+            try
             {
-                string sqlCommandText = string.Format("insert into UserInfo(User_LoginName,User_PassWord,User_Phone)values('{0}','{1}','{2}')", name, pwd, code);
-                result = conn.Execute(sqlCommandText);
+                Log.FileLogService.Instance.Info("注册事件：" + name + "," + pwd + ","+code+"成功");
+                using (IDbConnection conn = Commond.SqlConnection())
+                {
+                    string sqlCommandText = string.Format("insert into UserInfo(User_LoginName,User_PassWord,User_Phone)values('{0}','{1}','{2}')", name, pwd, code);
+                    result = conn.Execute(sqlCommandText);
+                }
             }
+            catch (Exception)
+            {
+                Log.FileLogService.Instance.Error("注册事件：" + name + "," + pwd + ","+code+"失败");
+                throw;
+            }
+            
             return result;
         }
         //忘记密码
-        public int Forget()
+        public int Forget(AllInfo all)
         {
             int result = 0;
-            using (IDbConnection conn = Commond.SqlConnection())
+            try
             {
-                string sqlCommandText = "Update UserInfo set User_PassWord =@User_PassWord  where User_LoginName=@User_LoginName";
-                result = conn.Execute(sqlCommandText);
+                Log.FileLogService.Instance.Info("LosePwd事件：成功");
+                using (IDbConnection conn = Commond.SqlConnection())
+                {
+                    string sqlCommandText = string.Format("Update UserInfo set User_PassWord ='{0}'  where User_LoginName='{1}'", all.User_PassWord, all.User_LoginName);
+                    result = conn.Execute(sqlCommandText);
+                }
+            }
+            catch (Exception)
+            {
+                Log.FileLogService.Instance.Error("LosePwd事件：失败");
+                throw;
             }
             return result;
-            
+        }
+        //盖楼评论
+        public int CommenttoGu(string userGu, string invGu, string comGu,string comBody)
+        {
+            int result = 0;
+            try
+            {
+                Log.FileLogService.Instance.Info("盖楼人" + userGu + ",帖子" + invGu + "," + comGu + "," + comBody + "");
+                using (IDbConnection conn = Commond.SqlConnection())
+                {
+                    string sqlCommandText = string.Format("insert into Comment(Com_UserGuId,Com_InvGuId,Com_ComGuId,Com_Body) values('" + userGu + "','" + invGu + "','" + comGu + "','" + comBody + "')");
+                    result = conn.Execute(sqlCommandText);
+                }
+            }
+            catch (Exception)
+            {
+                Log.FileLogService.Instance.Error("盖楼人" + userGu + ",帖子" + invGu + "," + comGu + "," + comBody + "失败！");
+                throw;
+            }
+            return result;
+        }
+        public int CommentByUser(string userGu, string invGu, string comBody)
+        {
+            int result = 0;
+            try
+            {
+                Log.FileLogService.Instance.Info("评论" + userGu + ",帖子" + invGu + "," + comBody + "");
+                using (IDbConnection conn = Commond.SqlConnection())
+                {
+                    string sqlCommandText = string.Format("insert into Comment(Com_UserGuId,Com_InvGuId,Com_Body) values('" + userGu + "','" + invGu + "','" + comBody + "')");
+                    result = conn.Execute(sqlCommandText);
+                }
+            }
+            catch (Exception)
+            {
+                Log.FileLogService.Instance.Error("评论" + userGu + ",帖子" + invGu + "," + comBody + "");
+                throw;
+            }
+            return result;
         }
     }
 }

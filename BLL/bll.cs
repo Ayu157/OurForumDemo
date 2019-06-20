@@ -67,7 +67,7 @@ namespace BLL
             return dal.AddRelationTable(User_Id, Com_Id, Com_InvGuId);
         }
         //登录
-        public int Login(string name, string pwd)
+        public List<AllInfo> Login(string name, string pwd)
         {
             return dal.Login(name, pwd);
         }
@@ -77,10 +77,18 @@ namespace BLL
             return dal.Register(name, pwd, code);
         }
         //忘记密码
-        public int Forget()
+        public int Forget(AllInfo all)
         {
-            return dal.Forget();
-
+            return dal.Forget(all);
+        }
+        //盖楼
+        public int CommenttoGu(string userGu, string invGu, string comGu, string comBody)
+        {
+            return dal.CommenttoGu(userGu, invGu, comGu, comBody);
+        }
+        public int CommentByUser(string userGu, string invGu, string comBody)
+        {
+            return dal.CommentByUser(userGu, invGu, comBody);
         }
     }
 }

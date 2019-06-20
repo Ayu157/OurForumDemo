@@ -90,6 +90,13 @@ namespace OurForum.Controllers
                 }
             }
         }
-
+        public int CommenttoGu(string userGu, string invGu, string comGu, string comBody)
+        {
+            return bll.CommenttoGu(userGu, invGu, comGu, comBody);
+        }
+        public int CommentByUser(string userGu, string invGu, string comBody)
+        {
+            return bll.CommentByUser(userGu, invGu, comBody);
+        }
     }
 }

@@ -158,6 +158,10 @@
                 code = $("#register-code").val(),
                 flag = false,
                 validatecode = null;
+            if (phonenumber != $("#codes").val()) {
+                alert("您输入验证码不正确")
+                return false;
+            }
             //判断用户名密码是否为空
             if (username == "") {
 
@@ -192,6 +196,26 @@
                 alert("电话号码格式不正确");
             }
             else {
+                var wait = 30;
+                function time(obj) {
+                    if (wait == 0) {
+                        obj.className = 'btnCode';
+                        obj.removeAttribute("disabled");
+                        obj.value = "";
+                        wait = 30;
+                    } else {
+                        obj.className = 'btnCodeDisabled';//按钮变灰，不可点击
+                        obj.setAttribute("disabled", true);
+                        obj.value = "重新发送(" + wait + ")";
+                        wait--;
+                        setTimeout(function () {
+                            time(obj)
+                        },
+                            1000)
+                    }
+                }
+                document.getElementById("huo").onclick = function () { time: this }
+
                 //注册
                 $.ajax({
                     url: "/Login/Register?name=" + username + "&pwd=" + password + "&code=" + code + "",
