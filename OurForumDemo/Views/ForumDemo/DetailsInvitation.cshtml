@@ -17,9 +17,7 @@
     <link rel="stylesheet" href="~/Forum/css/index.css" />
 </head>
 <body>
-    
     <input id="Com_InvGuId" type="hidden" value="@ViewBag.Com_InvGuId" />
-    <input id="LoginUser" type="hidden" value="@Session["User_GuId"]" />
     <header class="ltHead">
         <div class="ltHead_cen">
             <a href=""><img src="~/img/logo.png" alt="" class="headPic1" /></a>
@@ -75,8 +73,8 @@
                     <div class="newPending_head_tittle">评论</div>
                 </div>
                 <div class="writePending_con">
-                    <input id="comtext" type="text" placeholder="写下你的评论..." />
-                    <input type="submit" onclick="comBig()" value="评论" />
+                    <input type="text" placeholder="写下你的评论..." />
+                    <input type="submit" value="评论" />
                 </div>
             </div>
         </div>
@@ -111,8 +109,8 @@
                 </div>
             </div>
             <div class="indexSearch">
-                <input  type="text" placeholder="请输入关键词" />
-                <input type="button" value="搜索" />
+                <input type="text" placeholder="请输入关键词" />
+                <input type="submit" value="搜索" />
             </div>
             <div class="indexPublic">
                 <div class="indexPublic_head">
@@ -140,6 +138,10 @@
                     </ul>
                 </div>
             </div>
+            <div class="indexWxpublic">
+                <p>关注微信公众号</p>
+            </div>
+
         </div>
         <div class="clear"></div>
 
@@ -149,32 +151,17 @@
     </footer>
 </body>
 </html>
+
 <script>
-    function comBig() {
-        var mycomtent = $("#comtext").val();
-        $.ajax({
-            url: "/ForumDemo/CommentByUser",
-            data: { "userGu": "419C3900-64A2-4030-A9FC-1345762833C0", "invGu": aguId, "comBody": mycomtent },
-            success: s=> {
-                if (s == 1) {
-                    location.href = stu;
-                }
-                else {
-                    alert("false");
-                }
-            }
-        })
-    }
-    var a = "";
-    var stu = window.location.search;
-    var aguId = "";
-    if ($("#Com_InvGuId").val().length >= 5) {
-        aguId = $("#Com_InvGuId").val();
-    }
-    else {
-        aguId = stu.substr(1, stu.length);
-    }
     $(function () {
+        var stu = window.location.search;
+        var aguId = "";
+        if ($("#Com_InvGuId").val().length >= 5) {
+            aguId = $("#Com_InvGuId").val();
+        }
+        else {
+            aguId = stu.substr(1, stu.length);
+        }
         $.ajax({
             url: "/ForumDemo/GetGuInvitation",
             data: { "guId": aguId },
@@ -205,84 +192,78 @@
 
             }
         })
-
-            $.ajax({
-                url: "/ForumDemo/GetComment",
-                data: { "guId": aguId },
-                type: "post",
-                success: s => {
-                    s = JSON.parse(s);
-                    $("#tittleHead").append("所有评论(" + s.length + ")")
-                    for (var i = 0; i < s.length; i++) {
-                        sa = s[i].Com_ComGuId;
-                        if (s[i].Com_ComGuId != null) {
-                            $("#" + s[i].Com_ComGuId + "i").append('<div class="pendDetail_replayCon"> ' +
-                                         '<p>[' + s[i].User_Name + '回复的内容]:' + s[i].Com_Body + '</p> ' +
+        $.ajax({
+            url: "/ForumDemo/GetComment",
+            data: { "guId": aguId },
+            type: "post",
+            success: s => {
+                s = JSON.parse(s);
+                $("#tittleHead").append("所有评论("+s.length+")")
+                for (var i = 0; i < s.length; i++) {
+                    sa = s[i].Com_ComGuId;
+                    if (s[i].Com_ComGuId != null) {
+                        $("#" + s[i].Com_ComGuId + "i").append('<div class="pendDetail_replayCon"> ' +
+                                     '<p>[' + s[i].User_Name + '回复的内容]:' + s[i].Com_Body + '</p> ' +
+                                    '</div> ')
+                        $.ajax({
+                            url: "/ForumDemo/GetCommentByUserGu",
+                            data: { "guId": sa },
+                            type: "post",
+                            success: a => {
+                                for (var j = 0; j < a.length; j++) {
+                                    $("#a" + s[i].Com_Id).append('<div class="pendDetail_replayCon"> ' +
+                                        '<p>[' + s[i].User_Name + ']回复[' + a[j].User_Name + ']:' + s[i].Com_Body + '</p> ' +
                                         '</div> ')
-                        }
-                        else {
-                            $("#newPending").append('<div class="newPending_son"> ' +
-                                '<div class="pendPic"></div>' +
-                                '<div class="pendDetail">' +
-                                '<div class="pendDetail_head">' +
-                                '<p>' + s[i].User_Name + '<span>' + s[i].Com_CreateTime + '</span></p>' +
-                                '<i>n楼</i>' +
-                                '</div>' +
-                                '<div class="pendDetail_con">' +
-                                '<p>' + s[i].Com_Body + '</p>' +
-                                '</div>' +
-                                '<div class="pendDetail_btn">' +
-                                '<ul>' +
-                                '<li id="' + s[i].Com_InvGuId + '" onclick="AAA(' + s[i].User_Id + ',' + s[i].Com_Id + ',id)">' + s[i].Com_Click + '</li>' +
-                                '<li id="' + s[i].Com_GuId + '" class="replayBtn">278</li>' +
-                                '<li class="delateBtn">删除</li>' +
-                                '</ul>' +
-                                '</div>' +
-                                '<div class="pendDetail_action">' +
-                                '<input type="text" placeholder="回复[' + s[i].User_Name + ']:"/>' +
-                                '<button  id="' + s[i].Com_GuId + 'ias" value="' + s[i].Com_GuId + '">评论</button>' +
-                                '<button>取消</button>' +
-                                '</div>' +
-                                '<div id="' + s[i].Com_GuId + 'i"></div>' +
-                                '</div>' +
-                                '<div class="clear"></div>' +
-                                '</div>'
-                            )
-                        }
-                        //无法添加到是因为层级的问题
-                        $("#" + s[i].Com_GuId).on("click", function () {
-                            $(".pendDetail_action").hide();
-                            $(this).parent().parent().next(".pendDetail_action").show();
-                        })
-                        $(".pendDetail_action button:last-of-type").click(function () {
-                            alert("aaa");
-                            $(".pendDetail_action").hide();
-                        })
-                        $("#" + s[i].Com_GuId + "ias").click(function () {
-                            var body = $(this).prev().val()
-                            var ar = $(this).val();
-                            $.ajax({
-                                url: "/ForumDemo/CommenttoGu",
-                                data: { "userGu": "419C3900-64A2-4030-A9FC-1345762833C0", "invGu": aguId, "comGu": ar, "comBody": body },
-                                success: s=> {
-                                    if (s == 1) {
-                                        location.href = stu;
-                                    }
-                                    else {
-                                        alert("false");
-                                    }
                                 }
-                            })
-                        });
+                            }
+                        })
                     }
-
+                    else {
+                        $("#newPending").append('<div class="newPending_son"> ' +
+                            '<div class="pendPic"></div>' +
+                            '<div class="pendDetail">' +
+                            '<div class="pendDetail_head">' +
+                            '<p>' + s[i].User_Name + '<span>' + s[i].Com_CreateTime + '</span></p>' +
+                            '<i>n楼</i>' +
+                            '</div>' +
+                            '<div class="pendDetail_con">' +
+                            '<p>' + s[i].Com_Body + '</p>' +
+                            '</div>' +
+                            '<div id="a' + s[i].Com_Id + '"></div>' +
+                            '<div class="pendDetail_btn">' +
+                            '<ul>' +
+                            '<li id="' + s[i].Com_InvGuId + '" onclick="AAA(' + s[i].User_Id + ',' + s[i].Com_Id + ',id)">' + s[i].Com_Click + '</li>' +
+                            '<li id="' + s[i].Com_GuId + '" class="replayBtn">278</li>' +
+                            '<li class="delateBtn">删除</li>' +
+                            '</ul>' +
+                            '</div>' +
+                            '<div class="pendDetail_action">' +
+                            '<input type="text" value="回复[' + s[i].User_Name + ']:"/>' +
+                            '<button>评论</button>' +
+                            '<button>取消</button>' +
+                            '</div>' +
+                            '<div id="' + s[i].Com_GuId + 'i"></div>' +
+                            '</div>' +
+                            '<div class="clear"></div>' +
+                            '</div>'
+                        )
+                    }
+                    $("#" + s[i].Com_GuId).on("click", function () {
+                        alert("点击事件成功！")
+                        $(".pendDetail_action").hide();
+                        $(this).parent().parent().next(".pendDetail_action").show();
+                    })
+                    $(".pendDetail_action button:last-of-type").click(function () {
+                        $(".pendDetail_action").hide();
+                    });
                 }
-            })
-           
+            }
+        })
+
     })
     //用户主键,评论主键,贴子外键
     function AAA(User_Id, Com_Id, Com_InvGuId) {
         location.href = '/ForumDemo/ClickPraise?User_Id=' + User_Id + '&Com_Id=' + Com_Id + '&Com_InvGuId=' + Com_InvGuId
     }
-    
+
 </script>
